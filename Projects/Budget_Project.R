@@ -116,6 +116,7 @@ ggplot(data=data.frame(cormat),
 
 #Budget
 
+
 #### Time Series Analysis ####
 Budget[,2]
 par(mfrow = c(3,4))
@@ -131,10 +132,12 @@ res
 
 
 
+
 N<-matrix(rep(apply(Budget[,-1],2,sd),24), nrow=24)
 N<- (24-1)/23*(1/N)
 M<-matrix(rep(apply(Budget[,-1],2,mean),24),nrow=24)
 Mprime<-Budget[,-1]-M
+
 
 M_n<-Mprime*N
 my_H_clust<-hclust(dist(M_n),method ="ward.D2")
@@ -197,3 +200,17 @@ km$cluster
 plot(Budget[,-1], col=(km$cluster+1), 
      main="K-Means Clustering Results with K=3", 
      pch=20, cex=2)
+
+
+#### Plotting the K-Means ####
+color=km$cluster
+plot(res$scores[,1], res$scores[,2], type='n')
+text(res$scores[,1], res$scores[,2], labels=(rownames(res$scores)), col=color)
+abline(h=0,v=0)
+
+#### K-means with two groups ####
+km2=kmeans(Budget[-1],2)
+color=km2$cluster
+plot(res$scores[,1], res$scores[,2], type='n')
+text(res$scores[,1], res$scores[,2], labels=(rownames(res$scores)), col=color)
+abline(h=0,v=0)
