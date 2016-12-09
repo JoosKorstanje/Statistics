@@ -138,8 +138,7 @@ M<-matrix(rep(apply(Budget[,-1],2,mean),24),nrow=24)
 # Centered data
 Mprime<-Budget[,-1]-M
 
-# Normalized
-M_n<-Mprime*N
+# NormalizedM_n<-Mprime*N
 
 # Hierarchical ascending clustering 
 my_H_clust<-hclust(dist(M_n), method ="ward.D2")
@@ -149,7 +148,6 @@ my_H_clust1 = hclust(dist(M_n), method='complete')
 par(mfrow=c(1,1))
 plot(my_H_clust)
 plot(my_H_clust1)
-
 # plot(my_H_clust$height)
 # lines(my_H_clust$height, col='green')
 
@@ -197,3 +195,25 @@ names(km)
 plot(Budget[,-1], col=(km$cluster+1), 
      main="K-Means Clustering Results with K=3", 
      pch=20, cex=2)
+
+
+# 3 groups plot
+PCA=princomp(Budget[,-1])
+kmeansjoos=kmeans(Budget[,-1],3)
+color=kmeansjoos$cluster
+plot(PCA$scores[,1], PCA$scores[,2], type='n')
+text(PCA$scores[,1], PCA$scores[,2], labels=(rownames(PCA$scores)), col=color)
+abline(h=0,v=0)
+
+plot(PCA$scores[,1], PCA$scores[,3], type='n')
+text(PCA$scores[,1], PCA$scores[,3], labels=(rownames(PCA$scores)), col=color)
+
+#2 groups plot
+kmeansjoos2=kmeans(Budget[,-1],2)
+color=kmeansjoos2$cluster
+plot(PCA$scores[,1], PCA$scores[,2], type='n')
+text(PCA$scores[,1], PCA$scores[,2], labels=(rownames(PCA$scores)), col=color)
+abline(h=0,v=0)
+
+plot(PCA$scores[,1], PCA$scores[,3], type='n')
+text(PCA$scores[,1], PCA$scores[,3], labels=(rownames(PCA$scores)), col=color)
