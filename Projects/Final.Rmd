@@ -32,9 +32,9 @@ As the data is already given, what we can do is following :
     + Prediction : Since the data is outdated, new data would be needed to validate the prediction. Hence we do not do prediction.
 * Modeling : Parameters or non-parameter ?
 
-> Can be non-parameter as we make no assumption about the functional form of predicted variables – in fact, we don’t even know the response 
-variables.)
-    Supervised or Unsupervised ? As we have no idea about the ‘groups’ or classes' of variables as in case of classification, we might opt to choose unsupervised method: PCA & Clustering
+> Can be non-parameter as we make no assumption about the functional form of predicted variables – in fact,
+There does not seem to be any response variable, which makes it an interdependence issue: prediction does not seem to be relevent. We will go for a descriptive method, e.g. PCA or clustering
+
     
 * Validation
     + Collinearity (Correlation of variables (e.g. over time))
