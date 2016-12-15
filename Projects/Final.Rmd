@@ -103,7 +103,7 @@ The difference between the mean and median (eg. CMI, LOG) indicates that there a
 ### 4. Box Plot
 Distribution, location and spread of the represented data.
 ```{r}
-boxplot(Budget[,-1], ylab = 'Percentage of France Budget', xlab = 'Budget Category')
+boxplot(Budget[,-1], ylab = 'Percentage of Budget', xlab = 'Budget Category')
 ```
 
 In the above plot, the share of all spending categories is mostly well bellow 20%, while for defense (DEF) and dept refund (DET), it is higher (showing war time and high governmental spending).
